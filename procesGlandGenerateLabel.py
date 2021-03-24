@@ -30,17 +30,19 @@ def img_preprocessing(BaseDatasetFolderPath = "../data_base/", customDatasetFold
 
                         ##### Process image #####
                         # 1 extract the real image 
-                        img2  = img[65:353, 203:747].copy()
-                        img_seg2 = img_seg[65:353, 203:747].copy()
+                        img2  = img[65:353, 203:715].copy()
+                        img_seg2 = img_seg[65:353, 203:715].copy()
                         print(img_seg2.shape)
-                        """while True:
-                            pass
+                        img2 = cv2.copyMakeBorder(img2, int((512-img2.shape[0])/2),int((512-img2.shape[0])/2), int((512-img2.shape[1])/2), int((512-img2.shape[1])/2), cv2.BORDER_CONSTANT)
+                        img_seg2 = cv2.copyMakeBorder(img2, int((512-img2.shape[0])/2),int((512-img2.shape[0])/2), int((512-img2.shape[1])/2), int((512-img2.shape[1])/2), cv2.BORDER_CONSTANT)
+                        print(img_seg2.shape)
+                        print("\n")
 
                         img_seg2 = ~img_seg2
                         img_seg2 = (~(img_seg2 <= 15)*255).astype(np.uint8)
                         cv2.imwrite(join(customDatasetFolderPath, "train/image/"+str(intt)+".png"), img2)
                         cv2.imwrite(join(customDatasetFolderPath, "train/label/"+str(intt)+".png"), img_seg2)
-                        intt = intt+1"""
+                        intt = intt+1
                     except:
                         print("error ", join(BaseDatasetFolderPath, patient, fileName2))
 
